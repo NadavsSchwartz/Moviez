@@ -15,9 +15,14 @@
     <div class="nav-wrapper">
       <a href="/" class="center brand-logo">Moviez</a>
       <ul class="right">
+      <% if current_user%>
+      <li><a href="/logout">Sign Out</a></li>
+      <%else%>
         <li><a href="/login">Sign in</a></li>
         <li><a href="/signup">Sign up</a></li>
+      <%end%>
         <li><a href="/movies">Latest movies</a></li>
+
       </ul>
     </div>
   </nav>
