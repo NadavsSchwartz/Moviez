@@ -1,0 +1,36 @@
+<br><br>
+<h4 class="indigo-text center">Create your new account</h5>
+<br><br>
+<section class="center col s4">
+    <div class="container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+        <%= form_with(model: @user, local: true) do |form| %>
+
+        <div class="input-field col s12">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+        </div>
+
+        <div class="input-field col s12">
+            <%= form.label :email %>
+            <%= form.email_field :email %>
+        </div>
+
+        <div class='row'>
+            <div class="input-field col s12">
+                <%= form.label :password %>
+                <%= form.password_field :password %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class="actions">
+            
+                <%= form.submit(class: 'center btn btn-large waves-effect indigo') %>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</section>
