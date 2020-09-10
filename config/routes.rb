@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create', as: 'users'
   # resources :profiles
   resources :users, except: [:new]
-  # resources :movies
+   resources :movies
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
