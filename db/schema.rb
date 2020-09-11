@@ -29,13 +29,6 @@ ActiveRecord::Schema.define(version: 2020_09_11_145758) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "movie_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
     t.integer "movie_id"
