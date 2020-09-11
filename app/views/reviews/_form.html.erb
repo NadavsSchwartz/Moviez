@@ -1,0 +1,28 @@
+<div class="container center ">
+        <div class="z-depth-2 grey lighten-4 " style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+<%= form_for([@movie, @review]) do |f| %>
+
+<div class="range-field col s12">
+    <%= f.label :rating %>
+    <%=f.range_field :rating, in: 1..10, :step => 0.1%><br>
+</div>
+
+  <div class="field col s12">
+    <br><%= f.label :comment %>
+    <%= f.text_area :comment, :placeholder => 'Explain your rating, so others can understand your point of view!'%><br>
+  </div>
+
+
+  <div class="actions">
+    <div class="row">
+    <br><%= f.submit class: 'btn btn-larve indigo right' %>
+    <%= link_to 'Back', movie_path(@movie), class: 'btn btn-medium indigo left' %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+</div>
+
+

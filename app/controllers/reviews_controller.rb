@@ -1,6 +1,12 @@
 class ReviewsController < ApplicationController
+  before_action :get_movie
+  def index
+    @movie = get_movie
+    @review = @movie.reviews.all
+  end
   def new
-    @review = Review.new
+    @review = @movie.reviews.new
+    
   end
 
   def edit; end
@@ -32,6 +38,7 @@ class ReviewsController < ApplicationController
   end
 
   private
+
 
   def get_review
     @review = Review.find(params[:id])
