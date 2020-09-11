@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in
+  before_action :redirect_if_logged_out
 
   
   private

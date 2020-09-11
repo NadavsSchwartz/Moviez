@@ -14,16 +14,20 @@
         <div class="card-image ">
           <img src="<%=@movie.poster%>">
             <div class="card-title ">
-                <p class= "center" ><%=@movie.title%></p>
+                <p>Name:<%=@movie.title%></p>
             </div>
-                <span>IMDB Ratings: <%=@movie.ratings%>, Genre: <%=@movie.genre%></span><br>
-                <span>Awards: <%=@movie.awards%></span><br>
+            <div class="section">
+                <span class="left">Awards: <%=@movie.awards%> IMDB Ratings: <%=@movie.ratings%>. Genre: <%=@movie.genre%>.<br>
+                       </div>
         </div>
         <div class="card-content">
           <p><%=@movie.plot%></p>
         </div>
         <div class="card-action">
-          <a href="https://www.imdb.com/title/<%=@movie.title%>"><%=@movie.title%> in IMDB</a>
+        <div class="row">
+          <%= link_to 'See reviews', movie_reviews_path(@movie.id), class: 'btn btn-large indigo right'%>
+          <%= link_to 'New review', new_movie_review_path(@movie.id), class: 'btn btn-large indigo left'%>
+          </div>
         </div>
       </div>
     </div>

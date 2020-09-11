@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     if @movie.nil?
       @movie = Movie.get_movie(params[:search])
       if @movie['Error']
-        flash.notice = @movie['Error'], params[:search]
+        flash.notice = "#{@movie['Error']} Youre query: #{params[:search]}, Please try again."
         redirect_to root_path
       else
         @movie = create_movie(@movie)
@@ -37,30 +37,58 @@ class MoviesController < ApplicationController
 
   def find
     @movie = find_movie
-    render :test if !@movie.title.nil?
-    flash.alert = "No movie found with this id" if @movie.title.nil?
+    if @movie.nil? || @movie.title.nil?
+    flash.alert = "No movie found with this id"
+    redirect_to root_path
+    else
+      render :test
+    end
   end
+
   private
 
   def find_movie
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find_by(id: params[:id])
   end
 
   def create_movie(res)
-    movie = Movie.new(
-      title: res['Title'],
-      year: res['Year'],
-      rated: res['Rated'],
-      genre: res['Genre'],
-      write: res['Writer'],
-      actors: res['Actors'],
-      awards: res['Awards'],
-      runtime: res['Runtime'],
-      plot: res['Plot'],
-      poster: res['Poster'],
-      ratings: res['imdbRating']
+    if logged_in
+      movie = current_user.movies.build(
+        title: res['Title'],
+        year: res['Year'],
+        rated: res['Rated'],
+        genre: res['Genre'],
+        write: res['Writer'],
+        actors: res['Actors'],
+        awards: res['Awards'],
+        runtime: res['Runtime'],
+        plot: res['Plot'],
+        poster: res['Poster'],
+        ratings: res['imdbRating']
+      )
+      
+      if movie.save
+        redirect_to movie_path(movie.id) 
+      else
+      movie = Movie.find_by(title: movie.title)
+      redirect_to movie_path(movie.id) 
+      end
+  else
+      movie = Movie.new(
+        title: res['Title'],
+        year: res['Year'],
+        rated: res['Rated'],
+        genre: res['Genre'],
+        write: res['Writer'],
+        actors: res['Actors'],
+        awards: res['Awards'],
+        runtime: res['Runtime'],
+        plot: res['Plot'],
+        poster: res['Poster'],
+        ratings: res['imdbRating']
     )
     movie.save
     redirect_to movie_path(movie.id)
+    end
   end
 end

@@ -1,3 +1,32 @@
 
-<%=@user.name %>
-<%=  link_to 'delete', user_path, method:'delete'%>
+<p class="flow-text center">Enjoy the latest movies searched by <%=@user.name%>!</p>
+<div class="row">
+<div class="col s12">
+  
+<% @user.movies.each do |movie|%>
+<div class="col s4">
+    <div class="card medium">
+      <div class="card-image">
+        <img src=<%=movie.poster%>>
+      </div>
+      
+      <div class="card-stacked">
+        <div class="card-content">
+
+        <strong class="center"><%=movie.title%></strong>
+          <p><%=movie.plot%></p>
+   
+          <div class="row">
+          <%= link_to 'See reviews', movie_reviews_path(movie.id), method:'get', class: 'btn indigo'%>
+          <%= link_to 'New review', new_movie_review_path(movie.id), method:'get', class: 'btn indigo'%>
+          <%= link_to 'Delete movie', user_path(@user.id), method:'delete', class: 'btn indigo right'%>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+  <%end%>
+  </div>
+</div>
+            
