@@ -1,2 +1,23 @@
-Hello and welcome to Moviez!
+
 <%=  link_to 'search a movie', movie_search_path , method:'get'%>
+  <div class="row">
+  <div class="col s3">
+<% @movies.each do |movie|%>
+    <h5 class="header"><%=movie.title%></h5>
+    <div class="card horizontal small">
+      <div class="card-image">
+        <img src=<%=movie.poster%>>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p><%=movie.plot%></p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  </div>
+  </div>
+            

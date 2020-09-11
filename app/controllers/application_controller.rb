@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def redirect_if_logged_out
+    unless logged_in
+      redirect_to root_path, notice: "You must be logged in order to do that."
+    end
+  end
+
 end

@@ -1,17 +1,16 @@
 class MoviesController < ApplicationController
-  #using the private method "find movie on any routes that contain 'id' for 'dry' code"
-    # before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  # using the private method "find movie on any routes that contain 'id' for 'dry' code"
+  # before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
-  #making sure user has to be logged in unless user is at index or show routes
-    # before_action :authenticate_user!, except: [:index, :show]
-
+  # making sure user has to be logged in unless user is at index or show routes
+  # before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @movies = Movie.last(6)
   end
 
   def new
-    @movie = current_user.movies.new
+
   end
 
   def search
@@ -19,33 +18,35 @@ class MoviesController < ApplicationController
   end
 
   def show
-    movie = Movie.find_by(title: params[:search].capitalize) if params[:search].present?
-    movie = Movie.get_movie(params[:search]) if movie.nil?
-    if movie['Error']
-    flash.notice = 'Movie could not be found. Please try again with more details'
-      redirect_to movie_search_path
+    @movie = Movie.find_by(title: params[:search].capitalize) if params[:search].present?
+    if @movie.nil?
+      @movie = Movie.get_movie(params[:search])
+      if @movie['Error']
+        flash.notice = @movie['Error'], params[:search]
+        redirect_to root_path
+      else
+        @movie = create_movie(@movie)
+      end
     else
-      binding.pry
-      @new_movie = create_movie(movie)
-      redirect_to (@new_movie)
+      render :test
     end
   end
 
-  def edit
-  end
+  def edit; end
 
+  def find
+    @movie = find_movie
+    render :test if !@movie.title.nil?
+    flash.alert = "No movie found with this id" if @movie.title.nil?
+  end
   private
 
   def find_movie
     @movie = Movie.find(params[:id])
   end
 
-  def movie_params
-    params.require(:movie).permit(:title, :year, :write, :director, :rated, :genre, :actors, :awards, :runtime, :plot, :poster, :ratings)
-  end
-
   def create_movie(res)
-    @new_movie = current_user.movies.new(
+    movie = Movie.new(
       title: res['Title'],
       year: res['Year'],
       rated: res['Rated'],
@@ -58,6 +59,7 @@ class MoviesController < ApplicationController
       poster: res['Poster'],
       ratings: res['imdbRating']
     )
-    @new_movie.save
+    movie.save
+    redirect_to movie_path(movie.id)
   end
 end
