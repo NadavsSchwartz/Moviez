@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in
+  add_flash_types :error
 
+  
   private
   def current_user
     @user ||= User.find_by(id: session[:user_id])

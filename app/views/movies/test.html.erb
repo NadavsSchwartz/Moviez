@@ -1,0 +1,38 @@
+ 
+<% if @error %>
+<div id="error_explanation">
+  <p><%= @error %></p>
+</div>
+<% end %>
+
+ <div class="section center">
+ </div>
+ 
+ <div class="row">
+    <div class="col s5 center">
+      <div class="card ">
+        <div class="card-image ">
+          <img src="<%=@movie.poster%>">
+            <div class="card-title ">
+                <p class= "center" ><%=@movie.title%></p>
+            </div>
+                <span>IMDB Ratings: <%=@movie.ratings%>, Genre: <%=@movie.genre%></span><br>
+                <span>Awards: <%=@movie.awards%></span><br>
+        </div>
+        <div class="card-content">
+          <p><%=@movie.plot%></p>
+        </div>
+        <div class="card-action">
+          <a href="https://www.imdb.com/title/<%=@movie.title%>"><%=@movie.title%> in IMDB</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<style>
+.card img {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+
+</style>

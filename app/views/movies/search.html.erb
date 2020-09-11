@@ -1,0 +1,32 @@
+<br><br><br>
+
+<% if @error %>
+<div id="error_explanation">
+  <p><%= @error %></p>
+</div>
+<% end %>
+
+<br><br>
+<h4 class="indigo-text center">Look for a Movie.</h5>
+<br><br>
+
+<div class="container">
+
+<section class="center col s4">
+    <div class="container">
+  
+    <%= form_tag show_path, :method => :post do %>
+
+        <div class="input-field col s12">
+            <%= label_tag :search %>
+            <%= text_field_tag :search%>
+        </div>
+
+       <div class='row'>
+           <br><%= submit_tag 'submit', :class => 'center btn btn-large waves-effect indigo' %>
+       </div>
+   <%end%>
+   </div>
+</div>
+
+    
