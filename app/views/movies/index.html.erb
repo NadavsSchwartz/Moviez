@@ -13,8 +13,11 @@
         <div class="card-content">
         <p class="center"><strong><%=movie.title%></strong></p>
           <p><%=movie.plot%></p>
+        <div class="row center">
+          <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo right'%>
+          <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo left'%>
+          </div>
         </div>
-
       </div>
     </div>
     </div>
