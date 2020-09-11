@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   # resources :profiles
 
   get 'movies/search', to: 'movies#search', as: 'movie_search'
-  post 'movies/show',  as: 'show'
+  post 'movies/search/results', to: 'movies#show'
 
   resources :users, except: [:new]
-   resources :movies
+    resources :movies
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
