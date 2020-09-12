@@ -10,10 +10,12 @@
         <img src=<%=movie.poster%>>
       </div>
       <div class="card-stacked">
-        <div class="card-content">
-        <p class="center"><strong><%=movie.title%></strong></p>
-          <p><%=movie.plot%></p>
-        <div class="row center">
+        <div class="card-content s12">
+        <p class="center"><strong>Title: <%=movie.title%>(<%=movie.runtime%>), <%=movie.year%></strong></p>
+        <div class="row">
+          <p><%=movie.plot[0..120]..%></p>
+          </div>
+        <div class="row center col s12">
           <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo right'%>
           <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo left'%>
           </div>
@@ -24,4 +26,5 @@
   <%end%>
   </div>
 </div>
+
             

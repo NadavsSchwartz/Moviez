@@ -1,2 +1,4 @@
-<%=@review.comment%>
-<%=@review.rating%>
+<%=@review.map do |review| %>
+<%= review.comment%>
+<%= review.rating%>
+<%end%>

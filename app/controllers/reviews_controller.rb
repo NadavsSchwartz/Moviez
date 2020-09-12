@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
     @review.movie_id = @movie.id
 
     if @review.save
-      redirect_to @movie
+      redirect_to movie_reviews_path
     else
       render 'new'
     end

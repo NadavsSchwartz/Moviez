@@ -1,9 +1,4 @@
 class MoviesController < ApplicationController
-  # using the private method "find movie on any routes that contain 'id' for 'dry' code"
-  # before_action :find_movie, only: [:show, :edit, :update, :destroy]
-
-  # making sure user has to be logged in unless user is at index or show routes
-  # before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @movies = Movie.last(12)

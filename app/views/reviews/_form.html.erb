@@ -10,7 +10,7 @@
 
   <div class="field col s12">
     <br><%= f.label :comment %>
-    <%= f.text_area :comment, :placeholder => 'Explain your rating, so others can understand your point of view!'%><br>
+    <%= f.text_area :comment, :placeholder => 'Explain your rating, so others can understand your point of view!', :required => true, minlength: 3%><br>
   </div>
 
 
