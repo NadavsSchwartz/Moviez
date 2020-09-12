@@ -1,4 +1,37 @@
-<%=@review.map do |review| %>
-<%= review.comment%>
-<%= review.rating%>
-<%end%>
+<div class="section center">
+    <div class="row">
+        <div class="card medium">
+            <div class="card-image">
+            <img src="<%=@movie.poster%>">
+            </div>
+                <div class="card-title">
+                    <h5>Name:<%=@movie.title%></h5>
+                    <span>Writer: <%=@movie.ratings%></span><br>
+                    <span>Actors: <%= @movie.actors%>
+                     
+                     </span>
+                    </div>
+                    </div class="row">
+                     <% if @movie.reviews.empty?%> 
+                    
+                    <p class="flow-text ">There are currently no reviews for that movie! Consider adding one</p>
+                    <%else%>
+                    <div class="row col s12">
+                    <%=@movie.reviews.map do |review| %>
+                    <div class="card col s5 ">
+                    Rating:<%= review.rating%>
+                    <p>Comment:<%= review.comment%><p>
+                    By: <%=@movie.users.name%>
+                     </div>
+                     <% end%> 
+                     </div>
+                    <%end%>
+                    </div>
+                    <div class="row">
+                     <p>Would you like to add a review?</p>
+                     <%= link_to 'New review', new_movie_review_path(@movie.id), class: 'btn indigo'%>
+                     </div>
+        </div>
+    </div>
+</div>
+
