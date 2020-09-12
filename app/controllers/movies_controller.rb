@@ -1,8 +1,8 @@
 class MoviesController < ApplicationController
+  skip_before_action :redirect_if_logged_out, only: [:index], raise: false
 
   def index
     @movies = Movie.last(12)
-    render :index
   end
 
   def new

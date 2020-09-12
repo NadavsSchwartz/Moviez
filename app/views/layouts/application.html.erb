@@ -18,15 +18,14 @@
       <% if current_user%>
       <ul id="dropdown" class="dropdown-content">
         <li class="divider"></li>
-      <li><%= link_to 'Sign Out', user_path(@user.id), method:'get'%></li>
-      <li><%= link_to 'Edit profile', edit_user_path(@user.id), method:'get'%></li>
-
+      <li><%= link_to 'Log out', '/signout', method: 'delete' %></li>
+      
         <li class="divider"></li>
       </ul>
-      <a class = "btn btn-large dropdown-button red lighten-2" href = "#" data-activates = "dropdown"><%=@user.name%></a>	 
+      <a class = "btn btn-large dropdown-button red lighten-2" href = "#" data-activates = "dropdown"><%=current_user.name%></a>	 
       <%else%>
-        <li><a href="/login">Sign in</a></li>
-        <li><a href="/signup">Sign up</a></li>
+        <li><%= link_to 'Register', signup_path, method:'get'%></li>
+        <li><%= link_to 'Log in', signin_path, method:'get'%></li>
       <%end%>
         <li><a href="/movies">Latest movies</a></li>
 

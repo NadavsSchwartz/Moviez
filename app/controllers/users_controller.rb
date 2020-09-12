@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :redirect_if_logged_out, only: %i[new create]
+  skip_before_action :redirect_if_logged_out, only: [:new, :create]
 
   def new
     @user = User.new
@@ -20,6 +20,12 @@ end
     else
       render :new
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to '/'
   end
 
   private

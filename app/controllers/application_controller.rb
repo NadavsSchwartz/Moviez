@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :redirect_if_logged_out
 
   
-  private
   def current_user
     @user ||= User.find_by(id: session[:user_id])
   end
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_logged_out
     unless logged_in
-      redirect_to root_path, notice: "You must be logged in order to do that."
+      redirect_to signin_path, notice: "You must be logged in to do that."
     end
   end
 

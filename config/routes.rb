@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/signup', to: 'users#new'
     post '/signup', to: 'users#create', as: 'users'
 
+  delete '/signout', to: 'sessions#destroy'
     get 'movies/search', to: 'movies#search', as: 'movie_search'
 
     get 'movies', to: 'movies#index'

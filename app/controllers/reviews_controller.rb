@@ -1,12 +1,15 @@
 class ReviewsController < ApplicationController
   before_action :get_movie
+  skip_before_action :redirect_if_logged_out, only: [:index], raise: false
+
   def index
     @movie = get_movie
-    @review = @movie.reviews.all
+    @review = @movie.reviews.last(3)
+    @user = User.where("id = #{@movie.user_id}")
   end
+
   def new
     @review = @movie.reviews.new
-    
   end
 
   def edit; end
@@ -15,6 +18,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.movie_id = @movie.id
+
 
     if @review.save
       redirect_to movie_reviews_path
@@ -51,4 +55,5 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:rating, :comment)
   end
+
 end
