@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   validates_presence_of :email, :name
   validates_uniqueness_of :email, { case_sensitive: false }
-  has_many :movies
-  has_many :reviews, through: :movies
+  has_many :reviews
+  has_many :movies, through: :reviews
 
     def self.find_or_create_with_oauth(auth)
     u = User.find_by_uid(auth["uid"]) || User.find_or_create_by_email(auth)

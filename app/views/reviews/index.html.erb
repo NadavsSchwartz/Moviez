@@ -12,25 +12,26 @@
                     <span>Actors: <%= @movie.actors%></span>
             </div>
         </div>
-                    <div class="row">
-                <% if @movie.reviews.empty?%> 
-                    <p class="flow-text ">There are currently no reviews for that movie! Consider adding one</p>
-                <%else%>
-            </div>
-                <div class="section s12">
-                    <%@review.map do |review| %>
-                        <div class="card col s4 ">
-                        <p>Rating:<%= review.rating%></p>
-                        <p>Comment:<%= review.comment%></p>
-                        </div>
-                     <%end%> 
-                <%end%>
-             </div>
+
+        <div class="row">
+            <% if @movie.reviews.empty?%> 
+                <p class="flow-text ">There are currently no reviews for that movie! Consider adding one</p>
+            <%else%>
+        </div>
+
+        <div class="section s12">
+            <%@review.map do |review| %>
+                <div class="card col s4 ">
+                    <p>Comment:<br>"<%= review.comment%>"</p>
+                    <p>Rating:  <strong><%= review.rating%></strong></p>
+                </div>
+            <%end%> 
+            <%end%>
+        </div>
     </div>
 
-                    <div class="row s12">
-                     <p>Would you like to add a review?</p>
-                     <%= link_to 'New review', new_movie_review_path(@movie.id), class: 'btn indigo'%>
-                    </div>
-
+    <div class="row s12">
+        <p>Would you like to add a review?</p>
+        <%= link_to 'New review', new_movie_review_path(@movie.id), class: 'btn indigo'%>
+    </div>
 </div>

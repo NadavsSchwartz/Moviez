@@ -1,8 +1,14 @@
-<p class="flow-text center">Enjoy the latest movies searched by our users, or use the search box in the navigation bar to look up new movies!</p>
-<%=  link_to 'search a movie', movie_search_path , method:'get'%>
-<div class="row">
+
+<%if @movies.nil?%> 
+  <div class="section center">
+      <p class="flow-text ">There are currently no recent movie searches! Consider Looking up one!</p>
+      <%=  link_to 'search a movie', movie_search_path , method:'get', class: 'btn btn-large indigo'%>
+  </div>
+
+<%else%>
+  <p class="flow-text center">Enjoy the latest movies searched by our users, or use the search box in the navigation bar to look up new movies!</p>
+  <div class="row">
 <div class="col s12">
-  
 <% @movies.each do |movie|%>
 <div class="col s4">
     <div class="card medium">
@@ -23,6 +29,7 @@
       </div>
     </div>
     </div>
+  <%end%>
   <%end%>
   </div>
 </div>

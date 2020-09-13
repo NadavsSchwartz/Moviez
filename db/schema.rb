@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_09_11_145758) do
     t.string "plot"
     t.string "poster"
     t.string "ratings"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
