@@ -20,7 +20,6 @@
                 <div class="section s12">
                     <%@review.map do |review| %>
                         <div class="card col s4 ">
-                        <p>By: <%=current_user.name%></p>
                         <p>Rating:<%= review.rating%></p>
                         <p>Comment:<%= review.comment%></p>
                         </div>

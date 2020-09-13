@@ -1,0 +1,31 @@
+
+<div class="row">
+<div class="col s12">
+  
+<% @reviews.each do |review|%>
+<div class="col s4">
+    <div class="card medium">
+      <div class="card-image">
+        <img src=>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content s12">
+        <p class="center"><strong>Comment: <%=review.comment%> </strong></p>
+        <div class="row">
+             <%@movie = Movie.where("id = #{review.movie_id}")%>
+            Movie: <%=@movie.first.title%>
+          </div>
+        <div class="row center col s12">
+            <%user = User.where("id = #{review.user_id}")%>
+            User: <%=user.name%>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <%end%>
+  </div>
+</div>
+
+
+            

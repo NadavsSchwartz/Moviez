@@ -27,8 +27,8 @@
         <li><%= link_to 'Register', signup_path, method:'get'%></li>
         <li><%= link_to 'Log in', signin_path, method:'get'%></li>
       <%end%>
-        <li><a href="/movies">Latest movies</a></li>
-
+        <li><%= link_to 'Latest movies', movies_path, method:'get'%></li>
+        <li><%= link_to 'Latest reviews', latest_reviews_path, method:'get'%></li>
       </ul>
     </div>
   </nav>

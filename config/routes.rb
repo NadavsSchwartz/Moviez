@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
     get '/login', to: 'sessions#new', as: 'signin'
     post '/login', to: 'sessions#create'
+    
+    get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
 
     get '/signup', to: 'users#new'
     post '/signup', to: 'users#create', as: 'users'
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
 
     get 'movies/:id', to: 'movies#find'
     post 'movies/:id', to: 'movies#show', as: 'movie'
+
+    get '/reviews/latest', to: 'reviews#latest', as: 'latest_reviews'
 
     resources :users, except: [:new]
     resources :movies do
