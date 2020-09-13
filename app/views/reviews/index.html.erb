@@ -3,29 +3,29 @@
         <div class="card medium">
 
             <div class="card-image">
-            <img src="<%=@movie.poster%>">
+                <img src="<%=@movie.poster%>">
             </div>
 
             <div class="card-title">
                 <h5>Name:<%=@movie.title%></h5>
-                    <span>Ratings: <%=@movie.ratings%></span><br>
-                    <span>Actors: <%= @movie.actors%></span>
+                <span>Ratings: <%=@movie.ratings%></span><br>
+                <span>Actors: <%= @movie.actors%></span>
             </div>
         </div>
 
         <div class="row">
-            <% if @movie.reviews.empty?%> 
-                <p class="flow-text ">There are currently no reviews for that movie! Consider adding one</p>
+            <% if @movie.reviews.empty?%>
+            <p class="flow-text ">There are currently no reviews for that movie! Consider adding one</p>
             <%else%>
         </div>
 
         <div class="section s12">
             <%@review.map do |review| %>
-                <div class="card col s4 ">
-                    <p>Comment:<br>"<%= review.comment%>"</p>
-                    <p>Rating:  <strong><%= review.rating%></strong></p>
-                </div>
-            <%end%> 
+            <div class="card col s4 ">
+                <p>Comment:<br>"<%= review.comment%>"</p>
+                <p>Rating: <strong><%= review.rating%></strong></p>
+            </div>
+            <%end%>
             <%end%>
         </div>
     </div>

@@ -1,44 +1,40 @@
-
-<%if @reviews.empty?%> 
-  <div class="section center">
-      <p class="flow-text ">There are currently no reviews! Consider adding one!</p>
-  </div>
+<%if @reviews.empty?%>
+<div class="section center">
+  <p class="flow-text ">There are currently no reviews! Consider adding one!</p>
+</div>
 <%else%>
 <div class="row">
-<div class="col s12">
-<% @reviews.each do |review|%>
-<div class="container">
-<div class="col s4">
-    <div class="card small">
-      <div class="card-stacked small">
-        <div class="card-content center">
+  <div class="col s12">
+    <% @reviews.each do |review|%>
+    <div class="container">
+      <div class="col s4">
+        <div class="card small">
+          <div class="card-stacked small">
+            <div class="card-content center">
 
-        <div class="row">
-          <%@movie = Movie.where("id = #{review.movie_id}")%>
-            <strong>Movie: <%=@movie.first.title%></strong>
-        </div>
+              <div class="row">
+                <%@movie = Movie.where("id = #{review.movie_id}")%>
+                <strong>Movie: <%=@movie.first.title%></strong>
+              </div>
 
-        <div class="row">
-          <p>Rating: <%=review.rating%></p>
-        </div>
+              <div class="row">
+                <p>Rating: <%=review.rating%></p>
+              </div>
 
-        <div class="row">
-          <p>Review: <%=review.comment%></p>
-        </div>
+              <div class="row">
+                <p>Review: <%=review.comment%></p>
+              </div>
 
-        <div class="card-action">
-          By: <%=review.user.name%>
-        </div>
+              <div class="card-action">
+                By: <%=review.user.name%>
+              </div>
 
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-  <%end%>
+    <%end%>
     <%end%>
   </div>
 </div>
-
-
-            

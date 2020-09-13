@@ -1,0 +1,44 @@
+ <% if @error %>
+ <div id="error_explanation">
+   <p><%= @error %></p>
+ </div>
+ <% end %>
+
+ <div class="section ">
+ </div>
+
+ <div class="row">
+   <div class="col s5 center">
+     <div class="card ">
+       <div class="card-image ">
+        <% if @movie.poster.size < 4%>
+        <span>Image is not available through the api, if you'd like, you can report it <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
+        <%else%>
+         <img src="<%=@movie.poster%>">
+         <%end%>
+           <p class="flow-text">Title name:<%=@movie.title%></p>
+         <div class="card-title">
+         </div>
+         <div class="section ">
+           <span class="center">Awards: <%=@movie.awards%> IMDB Ratings: <%=@movie.ratings%>. Genre:
+             <%=@movie.genre%>.<br>
+         </div>
+       </div>
+       <div class="card-content">
+         <p><%=@movie.plot%></p>
+       </div>
+       <div class="card-action">
+         <div class="row">
+           <%= link_to 'See reviews', movie_reviews_path(@movie.id), class: 'btn btn-large indigo right'%>
+           <%= link_to 'New review', new_movie_review_path(@movie.id), class: 'btn btn-large indigo left'%>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ <style>
+   .card img {
+     max-height: 200px;
+     object-fit: cover;
+   }
+ </style>

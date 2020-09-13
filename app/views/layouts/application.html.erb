@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Moviez</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <nav>
+<head>
+  <title>Moviez</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav>
     <div class="nav-wrapper red lighten-2">
       <a href="/" class="center brand-logo">Moviez</a>
       <ul class="right">
-      <% if current_user%>
-      <ul id="dropdown" class="dropdown-content">
-        <li class="divider"></li>
-      <li><%= link_to 'Log out', '/signout', method: 'delete' %></li>
-      
-        <li class="divider"></li>
-      </ul>
-      <a class = "btn btn-large dropdown-button red lighten-2" href = "#" data-activates = "dropdown"><%=current_user.name%></a>	 
-      <%else%>
+        <% if !current_user.nil? && !current_user.email.nil?%>
+        <ul id="dropdown" class="dropdown-content">
+          <li class="divider"></li>
+          <li><%= link_to 'Log out', '/signout', method: 'delete' %></li>
+          <li><%= link_to 'Profile', user_path(current_user.id), method: 'get' %></li>
+          <li class="divider"></li>
+        </ul>
+        <a class="btn btn-large dropdown-button red lighten-2" data-activates="dropdown"><%=current_user.name%></a>
+        <%else%>
         <li><%= link_to 'Register', signup_path, method:'get'%></li>
         <li><%= link_to 'Log in', signin_path, method:'get'%></li>
-      <%end%>
+        <%end%>
+        <li><%= link_to 'Search', root_path, method:'get'%></li>
         <li><%= link_to 'Latest movies', movies_path, method:'get'%></li>
         <li><%= link_to 'Latest reviews', latest_reviews_path, method:'get'%></li>
       </ul>
@@ -37,11 +40,13 @@
   <div>
     <div class="center flow-text"><%= msg %></div>
   </div>
-<% end %>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <% end %>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js">
+  </script>
   <script>
   </script>
-    <%= yield %>
-  </body>
+  <%= yield %>
+</body>
+   
 </html>

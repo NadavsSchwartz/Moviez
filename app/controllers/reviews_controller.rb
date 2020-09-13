@@ -1,11 +1,10 @@
 class ReviewsController < ApplicationController
    skip_before_action :get_movie, only: [:latest], raise: false
-  skip_before_action :redirect_if_logged_out, only: [:index], raise: false
+  skip_before_action :redirect_if_logged_out, only: [:index, :latest], raise: false
 
   def index
     @movie = get_movie
     @review = @movie.reviews.last(3)
-    @user = @use
   end
 
   def new
@@ -13,7 +12,10 @@ class ReviewsController < ApplicationController
     @review = @movie.reviews.new
   end
 
-  def edit; end
+  def edit
+   @review = get_review
+   @movie = get_movie
+  end
 
   def create
     @movie = get_movie

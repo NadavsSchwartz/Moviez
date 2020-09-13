@@ -1,13 +1,11 @@
 class MoviesController < ApplicationController
-  skip_before_action :redirect_if_logged_out, only: [:index], raise: false
+  skip_before_action :redirect_if_logged_out, only: [:index, :search], raise: false
 
   def index
-    @movies = Movie.last(12)
+    @movies = Movie.last(9)
   end
 
-  def new
-
-  end
+  def new; end
 
   def search
     render :search
@@ -24,7 +22,7 @@ class MoviesController < ApplicationController
         @movie = create_movie(@movie)
       end
     else
-      render :test
+      render :show
     end
   end
 
@@ -33,10 +31,10 @@ class MoviesController < ApplicationController
   def find
     @movie = find_movie
     if @movie.nil? || @movie.title.nil?
-    flash.alert = "No movie found with this id"
-    redirect_to root_path
+      flash.alert = 'No movie found with this id'
+      redirect_to root_path
     else
-      render :test
+      render :show
     end
   end
 
@@ -61,14 +59,13 @@ class MoviesController < ApplicationController
         poster: res['Poster'],
         ratings: res['imdbRating']
       )
-      
       if movie.save
-        redirect_to movie_path(movie.id) 
+        redirect_to movie_path(movie.id)
       else
-      movie = Movie.find_by(title: movie.title)
-      redirect_to movie_path(movie.id) 
+        movie = Movie.find_by(title: movie.title)
+        redirect_to movie_path(movie.id)
       end
-  else
+    else
       movie = Movie.new(
         title: res['Title'],
         year: res['Year'],
@@ -81,9 +78,9 @@ class MoviesController < ApplicationController
         plot: res['Plot'],
         poster: res['Poster'],
         ratings: res['imdbRating']
-    )
-    movie.save
-    redirect_to movie_path(movie.id)
+      )
+      movie.save
+      redirect_to movie_path(movie.id)
     end
   end
 end

@@ -1,37 +1,35 @@
-
-<%if @movies.nil?%> 
-  <div class="section center">
-      <p class="flow-text ">There are currently no recent movie searches! Consider Looking up one!</p>
-      <%=  link_to 'search a movie', movie_search_path , method:'get', class: 'btn btn-large indigo'%>
-  </div>
+<%if @movies.nil?%>
+<div class="section center">
+  <p class="flow-text ">There are currently no recent movie searches! Consider Looking up one!</p>
+  <%=  link_to 'search a movie', movie_search_path , method:'get', class: 'btn btn-large indigo'%>
+</div>
 
 <%else%>
-  <p class="flow-text center">Enjoy the latest movies searched by our users, or use the search box in the navigation bar to look up new movies!</p>
-  <div class="row">
-<div class="col s12">
-<% @movies.each do |movie|%>
-<div class="col s4">
-    <div class="card medium">
-      <div class="card-image">
-        <img src=<%=movie.poster%>>
-      </div>
-      <div class="card-stacked">
-        <div class="card-content s12">
-        <p class="center"><strong>Title: <%=movie.title%>(<%=movie.runtime%>), <%=movie.year%></strong></p>
-        <div class="row">
-          <p><%=movie.plot[0..120]..%></p>
-          </div>
-        <div class="row center col s12">
-          <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo right'%>
-          <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo left'%>
+<p class="flow-text center">Enjoy the latest movies searched by our users, or use the search box in the navigation bar
+  to look up new movies!</p>
+<div class="row">
+  <div class="col s12">
+    <% @movies.each do |movie|%>
+    <div class="col s4">
+      <div class="card medium">
+        <div class="card-image">
+          <img src=<%=movie.poster%>>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content s12">
+            <p class="center"><strong>Title: <%=movie.title%>(<%=movie.runtime%>), <%=movie.year%></strong></p>
+            <div class="row">
+              <p><%=movie.plot[0..120]..%></p>
+            </div>
+            <div class="row center col s12">
+              <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo right'%>
+              <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo left'%>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  <%end%>
-  <%end%>
+    <%end%>
+    <%end%>
   </div>
 </div>
-
-            

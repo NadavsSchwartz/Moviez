@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_poster_avaialable?
+    
+  end
+
 end
