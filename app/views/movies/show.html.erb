@@ -11,7 +11,7 @@
    <div class="col s5 center">
      <div class="card ">
        <div class="card-image ">
-        <% if @movie.poster.size < 4%>
+        <% if !pic_available?%>
         <span>Image is not available through the api, if you'd like, you can report it <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
         <%else%>
          <img src="<%=@movie.poster%>">

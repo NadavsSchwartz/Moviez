@@ -13,12 +13,8 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_logged_out
     unless logged_in
-      redirect_to signin_path, notice: "You must be logged in to do that."
+      redirect_to signin_path, notice: "You must be logged in order to do that."
     end
-  end
-
-  def is_poster_avaialable?
-    
   end
 
 end

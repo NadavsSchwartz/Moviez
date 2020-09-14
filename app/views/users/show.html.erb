@@ -6,7 +6,12 @@
     <div class="col s4">
       <div class="card small">
         <div class="card-image">
-          <img src=<%=movie.poster%>>
+          <% if !pic_available?%>
+          <span>Image is not available through the api, if you'd like, you can report it
+            <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
+          <%else%>
+          <img src="<%=@movie.poster%>">
+          <%end%>
         </div>
 
         <div class="card-stacked">
@@ -18,7 +23,7 @@
             <div class="section center">
               <%= link_to 'See reviews', movie_reviews_path(movie.id), method:'get', class: 'btn indigo '%>
               <%= link_to 'Delete movie', user_path(@user.id), method:'delete', class: 'btn indigo '%>
-             <%= link_to 'Edit review', edit_movie_review_path(@user.reviews.ids[0]), method:'get', class: 'btn indigo '%> 
+              <%= link_to 'Edit review', edit_movie_review_path(@user.reviews.ids[0]), method:'get', class: 'btn indigo '%>
             </div>
           </div>
 

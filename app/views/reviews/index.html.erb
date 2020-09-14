@@ -3,7 +3,12 @@
         <div class="card medium">
 
             <div class="card-image">
+                <% if !pic_available?%>
+                <span>Image is not available through the api, if you'd like, you can report it
+                    <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
+                <%else%>
                 <img src="<%=@movie.poster%>">
+                <%end%>
             </div>
 
             <div class="card-title">

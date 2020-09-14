@@ -31,9 +31,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review = get_review
     if @review.update(review_params)
-      redirect_to @review, notice: 'Review updated successfully.'
-      render :show
+      redirect_to movie_review_path, notice: 'Review updated successfully.'
     else
       render :edit
     end
