@@ -2,7 +2,10 @@ class MoviesController < ApplicationController
   skip_before_action :redirect_if_logged_out, only: [:index, :search], raise: false
 
   def index
-    @movies = Movie.last(9)
+    order_by = "ratings ASC" if params[:sort] == 'ratings'
+    order_by = "runtime ASC" if params[:sort] == 'length'
+    order_by = "year ASC" if params[:sort] == 'date'
+    @movies = Movie.order(order_by)
   end
 
   def new; end
