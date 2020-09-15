@@ -1,24 +1,23 @@
-# README
+### Introduction
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Moviez - A Movie search engine powered by OMDB (A free api movie database) that lets any user search a movie, leave comments, ratings, and see other user's reviews and comments.  
 
-Things you may want to cover:
+### Usage
 
-* Ruby version
+clone the repo and install the needed gems locally:
 
-* System dependencies
+```
+$ bundle install
+```
 
-* Configuration
+Next, migrate the database:
 
-* Database creation
+```
+$ rails db:migrate
+```
 
-* Database initialization
+Now you can run the app:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ rails server
+```
