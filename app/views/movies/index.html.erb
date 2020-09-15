@@ -27,7 +27,7 @@
   <div class="col s12">
     <% @movies.each do |movie|%>
     <div class="col s4">
-      <div class="card medium">
+      <div class="card large">
         <div class="card-image">
           <% if (movie.poster.size < 4)%>
           <span>Image is not available through the api, if you'd like, you can report it
@@ -37,16 +37,19 @@
           <%end%>
         </div>
         <div class="card-stacked">
-          <div class="card-content s12">
+          <div class="card-content">
             <p class="center"><strong>Title: <%=movie.title%>(<%=movie.runtime%>), <%=movie.year%>, Rating:
                 <%=movie.ratings%></strong></p>
 
-            <div class="row">
+            <div class="section">
               <p><%=movie.plot%></p>
             </div>
-            <div class="card-action center col s12">
-              <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo right'%>
-              <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo left'%>
+            <div class="card-action">
+            
+              <%= link_to 'See reviews', movie_reviews_path(movie.id), class: 'btn indigo '%>
+              <%= link_to 'Movie Page', movie_path(movie.id), class: 'btn indigo'%>
+              <%= link_to 'New review', new_movie_review_path(movie.id), class: 'btn indigo'%>
+              
             </div>
           </div>
         </div>

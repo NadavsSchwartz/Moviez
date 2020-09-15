@@ -40,8 +40,8 @@
  </div>
  </div>
     <div class="center">
-     <p class="flow-text">These are the latest users who reviewed that title:</p>
      <%@reviewers.each do |user|%>
+     <p class="flow-text">These are the latest users who reviewed that title:</p>
      <p><%= link_to "#{user.name}", user_path(user), class: 'btn btn-medium indigo center' %></p>
      <%end%>
    </div>
