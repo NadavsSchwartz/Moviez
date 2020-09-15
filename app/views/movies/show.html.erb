@@ -4,19 +4,21 @@
  </div>
  <% end %>
 
- <div class="section ">
- </div>
-
- <div class="row">
-   <div class="col s5 center">
+ <div class="container col s12">
+   <% if !@reviewers.nil?%>
+   <%end%>
+   <div class="section">
+   <div class="col s6 center">
      <div class="card ">
        <div class="card-image ">
-        <% if !pic_available?%>
-        <span>Image is not available through the api, if you'd like, you can report it <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
-        <%else%>
+         <% if !pic_available?%>
+         <span>Image is not available through the api, if you'd like, you can report it
+           <%= mail_to "cliprojectfis@gmail.com", "here"%>. thanks! :)</span>
+         <%else%>
          <img src="<%=@movie.poster%>">
          <%end%>
-           <p class="flow-text">Title name:<%=@movie.title%></p>
+
+         <p class="flow-text">Title name:<%=@movie.title%></p>
          <div class="card-title">
          </div>
          <div class="section ">
@@ -36,6 +38,13 @@
      </div>
    </div>
  </div>
+ </div>
+    <div class="center">
+     <p class="flow-text">These are the latest users who reviewed that title:</p>
+     <%@reviewers.each do |user|%>
+     <p><%= link_to "#{user.name}", user_path(user), class: 'btn btn-medium indigo center' %></p>
+     <%end%>
+   </div>
  <style>
    .card img {
      max-height: 200px;

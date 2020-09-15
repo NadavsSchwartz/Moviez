@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
-  skip_before_action :redirect_if_logged_out, only: [:index, :search], raise: false
+  skip_before_action :redirect_if_logged_out, only: %i[index find]
 
   def index
-    order_by = "ratings ASC" if params[:sort] == 'ratings'
-    order_by = "runtime ASC" if params[:sort] == 'length'
-    order_by = "year ASC" if params[:sort] == 'date'
-    @movies = Movie.order(order_by)
+    if (params[:sort])
+      @movies = Movie.order_by(params[:sort])
+    else
+      @movies = Movie.last(12)
+      end
   end
 
   def new; end
@@ -37,6 +38,7 @@ class MoviesController < ApplicationController
       flash.alert = 'No movie found with this id'
       redirect_to root_path
     else
+      @reviewers = @movie.reviewers
       render :show
     end
   end
@@ -86,5 +88,4 @@ class MoviesController < ApplicationController
       redirect_to movie_path(movie.id)
     end
   end
-
 end

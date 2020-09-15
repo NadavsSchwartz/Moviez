@@ -1,24 +1,25 @@
 class ReviewsController < ApplicationController
-   skip_before_action :get_movie, only: [:latest], raise: false
-  skip_before_action :redirect_if_logged_out, only: [:index, :latest], raise: false
+  before_action :get_movie, except: [:latest]
+  before_action :get_review, only: [:edit, :destroy]
+  skip_before_action :redirect_if_logged_out, only: %i[index latest], raise: false
 
   def index
-    @movie = get_movie
-    @review = @movie.reviews.last(3)
+    @reviews = if params[:user_id]
+                 @movie.reviews_by(User.find(params[:user_id]))
+               else
+                 @movie.reviews.last(3)
+                end
   end
 
   def new
-    @movie = get_movie
     @review = @movie.reviews.new
   end
 
   def edit
-   @review = get_review
-   @movie = get_movie
+    @review = get_review
   end
 
   def create
-    @movie = get_movie
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.movie_id = @movie.id
@@ -31,17 +32,16 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = get_review
-    if @review.update(review_params)
-      redirect_to movie_review_path, notice: 'Review updated successfully.'
+    if @movie.reviews.update(review_params)
+      redirect_to movie_user_reviews_path(@movie.id, current_user), notice: 'Review updated successfully.'
     else
       render :edit
     end
   end
 
   def destroy
-    @review.destroy
-    redirect_to reviews_url, notice: 'Review deleted successfully.'
+    @reviews.destroy
+    redirect_to root_path, notice: 'Review deleted successfully.'
   end
 
   def latest

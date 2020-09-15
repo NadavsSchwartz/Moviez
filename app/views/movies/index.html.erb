@@ -7,9 +7,16 @@
 <%else%>
 <div class="row left">Sort by:</div>
 <%= form_tag movies_path, method: :get do %>
+
 <%= submit_tag "ratings", name: :sort, class:"btn-small white-text indigo" %>
-<%= submit_tag "length", name: :sort, class: "btn-small white-text indigo" %>
-<%= submit_tag "date", name: :sort, class: "btn-small white-text indigo" %>
+<%= submit_tag "ratings DESC", name: :sort, class:"btn-small white-text indigo" %>
+
+<%= submit_tag "runtime", name: :sort, class: "btn-small white-text indigo" %>
+<%= submit_tag "runtime DESC", name: :sort, class: "btn-small white-text indigo" %>
+
+<%= submit_tag "year", name: :sort, class: "btn-small white-text indigo" %>
+<%= submit_tag "year DESC", name: :sort, class: "btn-small white-text indigo" %>
+
 <% end %>
 </div>
 <div class="container">

@@ -25,10 +25,14 @@
         </div>
 
         <div class="section s12">
-            <%@review.map do |review| %>
+            <%@reviews.map do |review| %>
             <div class="card col s4 ">
                 <p>Comment:<br>"<%= review.comment%>"</p>
                 <p>Rating: <strong><%= review.rating%></strong></p>
+            <% if review.user == current_user %>
+              <%= link_to 'Edit', edit_movie_review_path(@movie, review), method:'get', class: 'btn indigo '%>
+              <%= link_to 'Delete', movie_review_path(@movie, review), method:'delete', class: 'btn indigo '%>
+            <% end %>
             </div>
             <%end%>
             <%end%>
