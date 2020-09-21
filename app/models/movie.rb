@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
   validates_uniqueness_of :title
 
   def self.order_by(type) 
-    self.all.order("#{type}")
+    self.all.order(type)
   end
 
   def reviews_by(user)

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :get_movie, except: [:latest]
-  before_action :get_review, only: [:edit, :destroy]
+  before_action :get_review, only: %i[edit destroy]
   skip_before_action :redirect_if_logged_out, only: %i[index latest], raise: false
 
   def index

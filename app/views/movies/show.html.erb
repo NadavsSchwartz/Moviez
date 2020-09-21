@@ -40,9 +40,13 @@
  </div>
  </div>
     <div class="center">
-     <%@reviewers.each do |user|%>
+    <% if !@reviewers.empty?%>
      <p class="flow-text">These are the latest users who reviewed that title:</p>
+     <%@reviewers.each do |user|%>
      <p><%= link_to "#{user.name}", user_path(user), class: 'btn btn-medium indigo center' %></p>
+      <%end%>
+     <% else%>
+     <p class="flow-text">There are no users who reviewed that title yet!</p>
      <%end%>
    </div>
  <style>
