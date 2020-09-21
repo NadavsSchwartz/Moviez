@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'movies#search'
+  root to: 'movies#index'
 
   get '/login', to: 'sessions#new', as: 'signin'
   post '/login', to: 'sessions#create'

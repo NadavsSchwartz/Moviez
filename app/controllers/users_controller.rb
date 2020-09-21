@@ -16,7 +16,7 @@ end
   def create
     @user = User.new(user_data)
     if @user.save
-      redirect_to @user
+      redirect_to root_path
     else
       render :new
     end

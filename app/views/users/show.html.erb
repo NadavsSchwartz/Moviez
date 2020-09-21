@@ -1,7 +1,11 @@
-<p class="flow-text center">Enjoy the latest movies searched by <%=@user.name%>!</p>
+<% if @user.movies.empty?%>
+<p class="flow-text center">There are no movies to be shown. Would you like to search for one?</p>
+<div class="center">
+  <%= link_to 'Search a movie', movie_search_path, class: 'btn indigo'%>
+</div>
+<%else%>
 <div class="row">
   <div class="col s12">
-
     <% @user.movies.each do |movie|%>
     <div class="col s4">
       <div class="card medium">
@@ -32,3 +36,4 @@
     <%end%>
   </div>
 </div>
+<%end%>
