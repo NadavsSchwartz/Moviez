@@ -19,8 +19,13 @@ Rails.application.routes.draw do
 
   get '/reviews/latest', to: 'reviews#latest', as: 'latest_reviews'
 
-  resources :users, except: [:new]
-  resources :movies do
+
+  #fix neste routes properly.
+  resources :users, except: [:new] do
+    resources :movies, only: [:index]
+    end
+
+    resources :movies do
     resources :reviews
     resources :users do
       resources :reviews, only: [:index]

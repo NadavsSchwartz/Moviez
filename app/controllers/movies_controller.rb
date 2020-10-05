@@ -2,11 +2,12 @@ class MoviesController < ApplicationController
   skip_before_action :redirect_if_logged_out, only: %i[index find]
 
   def index
-    if (params[:sort])
-      @movies = Movie.order_by(params[:sort])
+    if (params["user_id"])
+      @user = User.find(params["user_id"])
+      @movies = @user.movies
     else
       @movies = Movie.last(12)
-      end
+    end
   end
 
   def new; end
